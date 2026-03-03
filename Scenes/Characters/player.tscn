@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlknb40o22l56"]
+[gd_scene load_steps=6 format=3 uid="uid://dlknb40o22l56"]
 
 [ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_3etf2"]
 [ext_resource type="Texture2D" uid="uid://cxl8gqgurdnuf" path="res://Sprites/Character/Profile bald.png" id="2_40svl"]
@@ -18,9 +18,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40svl"]
+radius = 30.0
+height = 60.0
+
 [node name="Player" instance=ExtResource("1_3etf2")]
 
 [node name="CharacterSprite" parent="." index="0"]
 position = Vector2(1.9999999, -340.99997)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_gy20a")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-7, -38)
+scale = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_40svl")
