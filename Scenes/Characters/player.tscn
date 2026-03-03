@@ -9,12 +9,22 @@ region = Rect2(0, 0, 1080, 1692)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gy20a"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_al8ar")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -28,6 +38,7 @@ height = 60.0
 position = Vector2(1.9999999, -340.99997)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_gy20a")
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-7, -38)
