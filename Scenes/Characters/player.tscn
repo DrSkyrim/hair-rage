@@ -1,7 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlknb40o22l56"]
+[gd_scene load_steps=10 format=3 uid="uid://dlknb40o22l56"]
 
 [ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_3etf2"]
 [ext_resource type="Texture2D" uid="uid://cxl8gqgurdnuf" path="res://Sprites/Character/Profile bald.png" id="2_40svl"]
+[ext_resource type="Texture2D" uid="uid://dcgcvf3vpu18e" path="res://Sprites/Character/spritesheet_bald.png" id="2_al8ar"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy20a"]
+atlas = ExtResource("2_al8ar")
+region = Rect2(0, 0, 1440, 2256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqrjx"]
+atlas = ExtResource("2_al8ar")
+region = Rect2(1440, 0, 1440, 2256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khnq4"]
+atlas = ExtResource("2_al8ar")
+region = Rect2(2880, 0, 1440, 2256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_al8ar"]
 atlas = ExtResource("2_40svl")
@@ -9,10 +22,19 @@ region = Rect2(0, 0, 1080, 1692)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gy20a"]
 animations = [{
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy20a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqrjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khnq4")
+}],
+"loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -33,15 +55,20 @@ radius = 30.0
 height = 60.0
 
 [node name="Player" instance=ExtResource("1_3etf2")]
+health = 100
+damage = 15
+speed = 150.0
 
 [node name="CharacterSprite" parent="." index="0"]
-position = Vector2(1.9999999, -340.99997)
-scale = Vector2(0.4, 0.4)
+position = Vector2(12.000004, -313)
+scale = Vector2(0.3065972, 0.33293438)
 sprite_frames = SubResource("SpriteFrames_gy20a")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-7, -38)
 scale = Vector2(2, 1)
 shape = SubResource("CapsuleShape2D_40svl")
+
+[connection signal="animation_finished" from="CharacterSprite" to="." method="_on_character_sprite_animation_finished"]
