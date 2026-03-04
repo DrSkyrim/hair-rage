@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct5red3wji27q"]
+[gd_scene load_steps=3 format=3 uid="uid://ct5red3wji27q"]
 
-[ext_resource type="PackedScene" uid="uid://h6cb4bnjpped" path="res://Scenes/stage.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://cyugpoepuci5b" path="res://Scenes/street.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://dlknb40o22l56" path="res://Scenes/Characters/player.tscn" id="3_3dryh"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Stage" parent="." instance=ExtResource("1_ebmjs")]
+
+[node name="Player" parent="." instance=ExtResource("3_3dryh")]
+position = Vector2(460, 906)
+scale = Vector2(0.4, 0.4)

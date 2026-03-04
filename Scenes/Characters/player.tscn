@@ -38,7 +38,8 @@ height = 60.0
 position = Vector2(1.9999999, -340.99997)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_gy20a")
-animation = &"attack"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-7, -38)
