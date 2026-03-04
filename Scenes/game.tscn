@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct5red3wji27q"]
+[gd_scene load_steps=4 format=3 uid="uid://ct5red3wji27q"]
 
 [ext_resource type="PackedScene" uid="uid://cyugpoepuci5b" path="res://Scenes/street.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://c5crvul50sdxe" path="res://Scripts/game.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dlknb40o22l56" path="res://Scenes/Characters/player.tscn" id="3_3dryh"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_wrm1d")
 
-[node name="Stage" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Street" parent="." instance=ExtResource("1_ebmjs")]
+y_sort_enabled = true
+position = Vector2(1, -1)
 
 [node name="Player" parent="." instance=ExtResource("3_3dryh")]
-position = Vector2(460, 906)
+position = Vector2(447, 1009)
 scale = Vector2(0.5, 0.5)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(451, 816)
+zoom = Vector2(2.275, 2.275)

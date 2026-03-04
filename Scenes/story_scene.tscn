@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5fpwxs10ti70"]
+
+[ext_resource type="Script" uid="uid://cjxsxdqy352jl" path="res://Scripts/story_scene.gd" id="1_7xecu"]
+[ext_resource type="Texture2D" uid="uid://bdiewlwgemq1a" path="res://Sprites/Backgrounds/room.png" id="2_jog2p"]
+[ext_resource type="Texture2D" uid="uid://cvnjri48cpxux" path="res://Sprites/Character/Anfas bald HALF.png" id="3_jog2p"]
+[ext_resource type="Texture2D" uid="uid://62t83hswasr7" path="res://Sprites/Character/7-2-god-png-hd.png" id="4_w71fp"]
+
+[node name="story_scene" type="Node2D"]
+script = ExtResource("1_7xecu")
+
+[node name="story_nodes" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="story_nodes"]
+position = Vector2(961, 542)
+texture = ExtResource("2_jog2p")
+
+[node name="character" type="Sprite2D" parent="story_nodes"]
+position = Vector2(967, 623)
+texture = ExtResource("3_jog2p")
+
+[node name="god" type="Sprite2D" parent="story_nodes"]
+position = Vector2(1521.8749, 472.625)
+scale = Vector2(2.7148824, 2.3625655)
+texture = ExtResource("4_w71fp")
+
+[node name="Text_rect" type="ColorRect" parent="story_nodes"]
+offset_left = -2.0
+offset_top = 902.0
+offset_right = 1921.0
+offset_bottom = 1082.0
+color = Color(0.014275229, 0.0142752165, 0.014275211, 0.4745098)
+
+[node name="Text_label" type="Label" parent="story_nodes/Text_rect"]
+layout_mode = 0
+offset_right = 1916.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 48
+text = "placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="story_nodes/Text_rect"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = -15.0
+offset_right = 306.0
+offset_bottom = 25.0
+color = Color(0, 0, 0, 0.7137255)
+
+[node name="Name_label" type="Label" parent="story_nodes/Text_rect/ColorRect"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 32
+text = "placeholder"

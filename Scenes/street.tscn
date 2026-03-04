@@ -1,22 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyugpoepuci5b"]
+[gd_scene load_steps=4 format=3 uid="uid://cyugpoepuci5b"]
 
 [ext_resource type="PackedScene" uid="uid://h6cb4bnjpped" path="res://Scenes/stage.tscn" id="1_n57sb"]
 [ext_resource type="Texture2D" uid="uid://r117c2h2gjug" path="res://Sprites/Backgrounds/street.png" id="2_vhi7i"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n57sb"]
-distance = -1080.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n57sb"]
+size = Vector2(210, 1079)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vhi7i"]
-distance = -731.0
-
-[node name="Stage" instance=ExtResource("1_n57sb")]
+[node name="Street" instance=ExtResource("1_n57sb")]
 
 [node name="Sprite2D" parent="Backgrounds" index="0"]
 texture = ExtResource("2_vhi7i")
 
-[node name="CollisionShape2D" parent="Backgrounds/Sprite2D" index="0"]
-shape = SubResource("WorldBoundaryShape2D_n57sb")
-debug_color = Color(0.86029917, 0.34348142, 0.31348577, 0.41960785)
+[node name="invisible_wall" type="StaticBody2D" parent="." index="2"]
 
-[node name="CollisionShape2D2" parent="Backgrounds/Sprite2D" index="1"]
-shape = SubResource("WorldBoundaryShape2D_vhi7i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="invisible_wall" index="0"]
+position = Vector2(103, 539.5)
+shape = SubResource("RectangleShape2D_n57sb")

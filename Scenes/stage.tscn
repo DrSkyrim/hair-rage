@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://h6cb4bnjpped"]
+[gd_scene load_steps=3 format=3 uid="uid://h6cb4bnjpped"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oniry"]
+size = Vector2(1935, 20)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_84iix"]
+distance = -7.0
 
 [node name="Stage" type="Node2D"]
 
@@ -7,6 +13,20 @@
 [node name="Sprite2D" type="Sprite2D" parent="Backgrounds"]
 centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Sprite2D"]
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Backgrounds/Sprite2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-2, 747)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2(957.5, 0)
+shape = SubResource("RectangleShape2D_oniry")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D"]
+position = Vector2(-6, 1072)
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D2"]
+position = Vector2(6, 0)
+shape = SubResource("WorldBoundaryShape2D_84iix")
