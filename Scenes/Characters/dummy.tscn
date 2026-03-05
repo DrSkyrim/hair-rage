@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4sa4irxxl2u7"]
+
+[ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_2qvp0"]
+[ext_resource type="Texture2D" uid="uid://dcgcvf3vpu18e" path="res://Sprites/Character/spritesheet_bald.png" id="2_h0xbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m588"]
+size = Vector2(289, 711)
+
+[node name="Dummy" instance=ExtResource("1_2qvp0")]
+
+[node name="CharacterSprite" parent="." index="0"]
+position = Vector2(-4.4999733, -360.5)
+scale = Vector2(0.41759259, 0.35756502)
+texture = ExtResource("2_h0xbx")
+hframes = 3
+
+[node name="damage_reciever" parent="." index="4"]
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="damage_reciever" index="0"]
+position = Vector2(-62.5, -345.5)
+shape = SubResource("RectangleShape2D_8m588")
+
+[editable path="damage_emmiter"]
+[editable path="damage_reciever"]

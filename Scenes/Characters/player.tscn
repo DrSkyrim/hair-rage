@@ -1,58 +1,59 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlknb40o22l56"]
 
 [ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_3etf2"]
-[ext_resource type="Texture2D" uid="uid://cxl8gqgurdnuf" path="res://Sprites/Character/Profile bald.png" id="2_40svl"]
 [ext_resource type="Texture2D" uid="uid://dcgcvf3vpu18e" path="res://Sprites/Character/spritesheet_bald.png" id="2_al8ar"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gy20a"]
-atlas = ExtResource("2_al8ar")
-region = Rect2(0, 0, 1440, 2256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cqrjx"]
-atlas = ExtResource("2_al8ar")
-region = Rect2(1440, 0, 1440, 2256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_khnq4"]
-atlas = ExtResource("2_al8ar")
-region = Rect2(2880, 0, 1440, 2256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_al8ar"]
-atlas = ExtResource("2_40svl")
-region = Rect2(0, 0, 1080, 1692)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gy20a"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gy20a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cqrjx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_khnq4")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_al8ar")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40svl"]
 radius = 30.0
 height = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al8ar"]
+size = Vector2(253.5, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy20a"]
+size = Vector2(83, 660)
+
+[sub_resource type="Animation" id="Animation_40svl"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_al8ar"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_gy20a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gy20a"]
+_data = {
+&"RESET": SubResource("Animation_gy20a"),
+&"attack": SubResource("Animation_al8ar"),
+&"idle": SubResource("Animation_40svl")
+}
 
 [node name="Player" instance=ExtResource("1_3etf2")]
 collision_layer = 2
@@ -62,15 +63,39 @@ damage = 15
 speed = 150.0
 
 [node name="CharacterSprite" parent="." index="0"]
-position = Vector2(12.000004, -313)
-scale = Vector2(0.3065972, 0.33293438)
-sprite_frames = SubResource("SpriteFrames_gy20a")
-animation = &"attack"
-autoplay = "idle"
+position = Vector2(0.62501144, -350.275)
+scale = Vector2(0.2907986, 0.29988918)
+texture = ExtResource("2_al8ar")
+hframes = 3
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-7, -38)
 scale = Vector2(2, 1)
 shape = SubResource("CapsuleShape2D_40svl")
 
-[connection signal="animation_finished" from="CharacterSprite" to="." method="_on_character_sprite_animation_finished"]
+[node name="damage_emmiter" parent="." index="3"]
+collision_mask = 16
+monitorable = true
+
+[node name="CollisionShape2D" parent="damage_emmiter" index="0"]
+position = Vector2(74.25, -458)
+shape = SubResource("RectangleShape2D_al8ar")
+
+[node name="damage_reciever" parent="." index="4"]
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" parent="damage_reciever" index="0"]
+position = Vector2(-2.5, -320)
+shape = SubResource("RectangleShape2D_gy20a")
+
+[node name="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_gy20a")
+}
+autoplay = "idle"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="damage_emmiter"]
+[editable path="damage_reciever"]
