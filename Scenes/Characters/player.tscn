@@ -1,59 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlknb40o22l56"]
+[gd_scene load_steps=6 format=3 uid="uid://dlknb40o22l56"]
 
 [ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_3etf2"]
-[ext_resource type="Texture2D" uid="uid://dcgcvf3vpu18e" path="res://Sprites/Character/spritesheet_bald.png" id="2_al8ar"]
+[ext_resource type="SpriteFrames" uid="uid://dlx2fuu7p78jl" path="res://Scenes/Characters/bald.tres" id="2_40svl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_40svl"]
 radius = 30.0
 height = 60.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_al8ar"]
-size = Vector2(253.5, 154)
+size = Vector2(391, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gy20a"]
-size = Vector2(83, 660)
-
-[sub_resource type="Animation" id="Animation_40svl"]
-resource_name = "idle"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_al8ar"]
-resource_name = "attack"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_gy20a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gy20a"]
-_data = {
-&"RESET": SubResource("Animation_gy20a"),
-&"attack": SubResource("Animation_al8ar"),
-&"idle": SubResource("Animation_40svl")
-}
+size = Vector2(83, 540)
 
 [node name="Player" instance=ExtResource("1_3etf2")]
 collision_layer = 2
@@ -63,10 +21,11 @@ damage = 15
 speed = 150.0
 
 [node name="CharacterSprite" parent="." index="0"]
-position = Vector2(0.62501144, -350.275)
-scale = Vector2(0.2907986, 0.29988918)
-texture = ExtResource("2_al8ar")
-hframes = 3
+position = Vector2(51, -311)
+scale = Vector2(0.35500577, 0.35072768)
+sprite_frames = ExtResource("2_40svl")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-7, -38)
@@ -78,24 +37,24 @@ collision_mask = 16
 monitorable = true
 
 [node name="CollisionShape2D" parent="damage_emmiter" index="0"]
-position = Vector2(74.25, -458)
+position = Vector2(5.5, -458)
 shape = SubResource("RectangleShape2D_al8ar")
 
 [node name="damage_reciever" parent="." index="4"]
+collision_layer = 8
 collision_mask = 8
-monitorable = false
 
 [node name="CollisionShape2D" parent="damage_reciever" index="0"]
-position = Vector2(-2.5, -320)
+position = Vector2(-2.5, -302)
 shape = SubResource("RectangleShape2D_gy20a")
 
-[node name="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_gy20a")
-}
-autoplay = "idle"
+[node name="HealthBar" parent="." index="5"]
+offset_left = -71.0
+offset_top = -624.0
+offset_right = 175.0
+offset_bottom = -597.0
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="CharacterSprite" to="." method="_on_character_sprite_animation_finished"]
 
 [editable path="damage_emmiter"]
 [editable path="damage_reciever"]

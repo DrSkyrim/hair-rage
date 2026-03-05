@@ -1,0 +1,65 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dlx2fuu7p78jl"]
+
+[ext_resource type="Texture2D" uid="uid://did5mpqt1oxcu" path="res://Sprites/Character/Profile Bald fight.png" id="1_2m62j"]
+[ext_resource type="Texture2D" uid="uid://cxl8gqgurdnuf" path="res://Sprites/Character/Profile bald.png" id="2_lieyr"]
+[ext_resource type="Texture2D" uid="uid://bfk6rnkbwkq5w" path="res://Sprites/Character/Profile Bald walk.png" id="3_8koqe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khnq4"]
+atlas = ExtResource("1_2m62j")
+region = Rect2(0, 0, 1080, 1692)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utp2y"]
+atlas = ExtResource("1_2m62j")
+region = Rect2(1080, 0, 1080, 1692)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdgf0"]
+atlas = ExtResource("1_2m62j")
+region = Rect2(2160, 0, 1080, 1692)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al8ar"]
+atlas = ExtResource("2_lieyr")
+region = Rect2(0, 0, 1080, 1692)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy20a"]
+atlas = ExtResource("3_8koqe")
+region = Rect2(0, 0, 1080, 1692)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqrjx"]
+atlas = ExtResource("3_8koqe")
+region = Rect2(1080, 0, 1080, 1692)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khnq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utp2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdgf0")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al8ar")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy20a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqrjx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

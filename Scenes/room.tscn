@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://0m43jjsidynj"]
+
+[ext_resource type="PackedScene" uid="uid://h6cb4bnjpped" path="res://Scenes/stage.tscn" id="1_lsht4"]
+[ext_resource type="Script" uid="uid://4m432cs3sojp" path="res://Scripts/room.gd" id="2_6mpvv"]
+[ext_resource type="Texture2D" uid="uid://bdiewlwgemq1a" path="res://Sprites/Backgrounds/room.png" id="2_fr46g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr46g"]
+size = Vector2(293, 1069)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsht4"]
+size = Vector2(266, 645)
+
+[node name="Room" instance=ExtResource("1_lsht4")]
+script = ExtResource("2_6mpvv")
+
+[node name="Sprite2D" parent="Backgrounds" index="0"]
+texture = ExtResource("2_fr46g")
+
+[node name="CollisionShape2D" parent="Node2D/StaticBody2D" index="0"]
+position = Vector2(149.5, -209.5)
+shape = SubResource("RectangleShape2D_fr46g")
+
+[node name="AreaSwitches" parent="." index="2"]
+position = Vector2(2010, 378)
+
+[node name="Area2D" parent="AreaSwitches" index="0"]
+position = Vector2(-328, 461)
+
+[node name="CollisionShape2D" parent="AreaSwitches/Area2D" index="0"]
+position = Vector2(105, -285.5)
+shape = SubResource("RectangleShape2D_lsht4")
+
+[node name="Label" type="Label" parent="." index="3"]
+offset_left = 592.0
+offset_top = 748.0
+offset_right = 898.0
+offset_bottom = 874.0
+theme_override_font_sizes/font_size = 32
+text = "Arrow keys to move
+Z - to attack"
+
+[node name="Label2" type="Label" parent="." index="4"]
+offset_left = 1201.0
+offset_top = 747.0
+offset_right = 1568.0
+offset_bottom = 913.0
+theme_override_font_sizes/font_size = 32
+text = "This cream will buff you"

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1nh8hnju6d3y"]
+
+[ext_resource type="PackedScene" uid="uid://h6cb4bnjpped" path="res://Scenes/stage.tscn" id="1_nu2x2"]
+[ext_resource type="Texture2D" uid="uid://dx6wag7kmijnv" path="res://Sprites/Backgrounds/beach.png" id="2_no3o5"]
+[ext_resource type="PackedScene" uid="uid://dr4gpm5j8cnkd" path="res://Scenes/Characters/enemy.tscn" id="3_no3o5"]
+
+[node name="Beach" instance=ExtResource("1_nu2x2")]
+
+[node name="Sprite2D" parent="Backgrounds" index="0"]
+texture = ExtResource("2_no3o5")
+
+[node name="CollisionShape2D" parent="Node2D/StaticBody2D" index="0"]
+position = Vector2(8, -206)
+
+[node name="enemy" parent="." index="3" instance=ExtResource("3_no3o5")]
+position = Vector2(1163, 1045)
+scale = Vector2(0.4, 0.4)
+
+[node name="enemy2" parent="." index="4" instance=ExtResource("3_no3o5")]
+position = Vector2(624.00006, 683)
+scale = Vector2(0.4, 0.4)
+
+[node name="enemy3" parent="." index="5" instance=ExtResource("3_no3o5")]
+position = Vector2(730, 914)
+scale = Vector2(0.4, 0.4)

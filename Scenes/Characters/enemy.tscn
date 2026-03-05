@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://dr4gpm5j8cnkd"]
+
+[ext_resource type="PackedScene" uid="uid://dto0rw4j5k8tp" path="res://Scenes/Characters/character.tscn" id="1_b1c4r"]
+[ext_resource type="Texture2D" uid="uid://cmc5gm8c3yyyl" path="res://Sprites/Character/ARSENINA ANNA Assignment 4 Sprite_copy.svg" id="2_ixshx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4453e"]
+atlas = ExtResource("2_ixshx")
+region = Rect2(0, 0, 1058, 1058)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cp46"]
+atlas = ExtResource("2_ixshx")
+region = Rect2(1058, 0, 1058, 1058)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13ioh"]
+atlas = ExtResource("2_ixshx")
+region = Rect2(3174, 0, 1058, 1058)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1c4r"]
+atlas = ExtResource("2_ixshx")
+region = Rect2(0, 0, 1058, 1058)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixshx"]
+atlas = ExtResource("2_ixshx")
+region = Rect2(0, 0, 1058, 1058)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4453e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4453e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cp46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13ioh")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1c4r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixshx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1c4r"]
+radius = 108.0
+height = 308.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixshx"]
+size = Vector2(512, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1c4r"]
+size = Vector2(341, 497)
+
+[node name="enemy" instance=ExtResource("1_b1c4r")]
+health = 80
+damage = 10
+speed = 40.0
+control_type = 1
+
+[node name="CharacterSprite" parent="." index="0"]
+position = Vector2(-16, -257)
+scale = Vector2(0.5274102, 0.6030246)
+sprite_frames = SubResource("SpriteFrames_4453e")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.44038713
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-14, -66)
+scale = Vector2(1, 0.2)
+shape = SubResource("CapsuleShape2D_b1c4r")
+
+[node name="damage_emmiter" parent="." index="3"]
+position = Vector2(68, -339)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="damage_emmiter" index="0"]
+position = Vector2(-90, -35)
+shape = SubResource("RectangleShape2D_ixshx")
+
+[node name="damage_reciever" parent="." index="4"]
+position = Vector2(-4, -188)
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="damage_reciever" index="0"]
+position = Vector2(-18, -100)
+shape = SubResource("RectangleShape2D_b1c4r")
+
+[node name="HealthBar" parent="." index="5"]
+offset_left = -126.0
+offset_top = -585.0
+offset_right = 120.0
+offset_bottom = -558.0
+
+[editable path="damage_emmiter"]
+[editable path="damage_reciever"]
